@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Woltron Solutions | Автоматизация бизнеса и разработка сайтов</title>
+ <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231a2a5e'/%3E%3Cstop offset='100%25' stop-color='%232a3a6e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='url(%23grad)' font-family='Georgia, serif' font-weight='bold'%3EW%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.2s ease;
+    }
+
+    /* ========== ТЁМНАЯ ТЕМА ========== */
+    body.dark {
+      background-color: #0a0a0c;
+      color: #eef2ff;
+    }
+    body.dark .card {
+      background: rgba(18, 24, 34, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 28px;
+    }
+    body.dark .card:hover {
+      background: rgba(28, 36, 50, 0.9);
+      border-color: rgba(255, 255, 255, 0.14);
+      transform: translateY(-2px);
+    }
+    body.dark .stat-card {
+      background: rgba(18, 24, 34, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    body.dark .badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #c0ccee;
+    }
+    body.dark .nav-link {
+      color: #b0bedd;
+    }
+    body.dark .nav-link:hover {
+      color: #ffffff;
+    }
+    body.dark .btn-outline {
+      border: 1.5px solid #5a6a88;
+      color: #d0dcff;
+      background: transparent;
+    }
+    body.dark .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #aabbdd;
+    }
+    body.dark .btn-primary {
+      background: #2a3a60;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    body.dark .btn-primary:hover {
+      background: #3a4a70;
+      transform: translateY(-1px);
+    }
+    body.dark .contact-link {
+      color: #eef2ff;
+      background: rgba(30, 38, 50, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    body.dark .contact-link:hover {
+      background: #3a4a70;
+      transform: translateY(-2px);
+    }
+    body.dark .footer-link {
+      color: #8a9ac0;
+    }
+    body.dark .footer-link:hover {
+      color: #ffffff;
+    }
+    body.dark .modal-content {
+      background: #121822;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    body.dark .close-modal {
+      color: #eef2ff;
+    }
+    body.dark .close-modal:hover {
+      color: #ffffff;
+    }
+
+    /* ========== СВЕТЛАЯ ТЕМА ========== */
+    body.light {
+      background: #f5f7fc;
+      color: #1a2a5e;
+    }
+    body.light .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+    }
+    body.light .card:hover {
+      box-shadow: 0 12px 28px -8px rgba(26, 42, 94, 0.12);
+      transform: translateY(-2px);
+    }
+    body.light .stat-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+    body.light .navbar {
+      border-bottom: 1px solid #e2e8f0;
+    }
+    body.light .nav-link {
+      color: #2a3a6e;
+    }
+    body.light .nav-link:hover {
+      color: #0a1a4e;
+    }
+    body.light .badge {
+      background: #eef2fa;
+      border: 1px solid #d0dcec;
+      color: #1a2a5e;
+    }
+    body.light .btn-outline {
+      border: 1.5px solid #2a4a8a;
+      color: #1a3a7a;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    body.light .btn-outline:hover {
+      background: #ffffff;
+      border-color: #1a2a5e;
+    }
+    body.light .btn-primary {
+      background: #1a2a5e;
+      color: white;
+      box-shadow: 0 4px 12px rgba(26, 42, 94, 0.15);
+    }
+    body.light .btn-primary:hover {
+      background: #0f1f4a;
+      transform: translateY(-1px);
+    }
+    body.light .contact-link {
+      color: #1a2a5e;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+    body.light .contact-link:hover {
+      background: #f0f4fc;
+      border-color: #1a2a5e;
+      transform: translateY(-2px);
+    }
+    body.light .logo-sub {
+      color: #5a6a8e;
+    }
+    body.light .footer-link {
+      color: #5a6a8e;
+    }
+    body.light .footer-link:hover {
+      color: #1a2a5e;
+    }
+    body.light .modal-content {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+    body.light .close-modal {
+      color: #1a2a5e;
+    }
+    body.light .close-modal:hover {
+      color: #000000;
+    }
+
+    /* ========== ОБЩИЕ СТИЛИ ========== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .card, .stat-card {
+      transition: all 0.25s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+    }
+
+    /* навигация */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .logo:hover {
+      opacity: 0.8;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    /* плавающая кнопка темы */
+    .floating-theme {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background: rgba(15, 20, 30, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 60px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    body.light .floating-theme {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      color: #1a2a5e;
+    }
+    .floating-theme:hover {
+      transform: scale(1.02);
+    }
+
+    /* герой */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding: 20px 0 40px;
+    }
+    .hero-content {
+      flex: 1.2;
+    }
+    .hero-side {
+      flex: 0.9;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .hero-text {
+      font-size: 1rem;
+      margin-top: 12px;
+      max-width: 520px;
+      opacity: 0.85;
+    }
+    .tag-group {
+      margin-top: 24px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.light .tag {
+      background: #eef2fa;
+      color: #1a2a5e;
+    }
+    .button-group {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* компетенции */
+    .comp-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .comp-card {
+      padding: 18px 22px;
+      border-radius: 24px;
+      transition: all 0.25s ease;
+      margin-bottom: 14px;
+    }
+    .comp-card:last-child {
+      margin-bottom: 0;
+    }
+    .comp-card h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .comp-card p {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      line-height: 1.45;
+    }
+
+    /* преимущества */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin: 60px 0;
+    }
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      min-height: 220px;
+    }
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .feature-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .feature-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      opacity: 0.8;
+    }
+
+    /* о компании */
+    .about {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 48px;
+      align-items: stretch;
+      margin: 50px 0;
+    }
+    .about-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .about-text p {
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+    .stats {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1;
+      text-align: center;
+      padding: 18px 12px;
+      border-radius: 20px;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+    .why-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 28px;
+    }
+    .why-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .why-list {
+      list-style: none;
+      flex: 1;
+    }
+    .why-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    /* финал */
+    .final {
+      margin: 50px 0;
+      padding: 40px;
+      text-align: center;
+      border-radius: 28px;
+    }
+    .final p {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .final p:first-child {
+      font-weight: 800;
+    }
+
+    /* футер */
+    footer {
+      margin-top: 80px;
+      padding: 48px 0 40px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    body.light footer {
+      border-top-color: #e2e8f0;
+    }
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+    .contact-link {
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .footer-links {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    /* ========== МОДАЛЬНОЕ ОКНО ========== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.show {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 700px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-radius: 32px;
+      padding: 32px;
+      position: relative;
+      animation: modalFadeIn 0.3s ease;
+    }
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    }
+    .modal-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .close-modal {
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      line-height: 1;
+    }
+    .modal-body {
+      line-height: 1.6;
+    }
+    .modal-body h3 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    .modal-body h3:first-of-type {
+      margin-top: 0;
+    }
+    .modal-body p {
+      margin-bottom: 12px;
+    }
+    .modal-body ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    /* ========== АДАПТИВ ========== */
+    @media (max-width: 1000px) {
+      .features {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; }
+      .about { grid-template-columns: 1fr; gap: 28px; }
+      .container { padding: 0 20px; }
+      h1 { font-size: 2.2rem; }
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .nav-links { width: 100%; justify-content: space-between; }
+      .button-group .btn { flex: 1; justify-content: center; }
+      .floating-theme { bottom: 16px; right: 16px; padding: 8px 16px; font-size: 0.75rem; }
+      .contact-link { padding: 8px 18px; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 600px) {
+      .contact-row { gap: 12px; }
+      .contact-link { padding: 6px 14px; font-size: 0.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 16px; }
+      .nav-link { font-size: 0.85rem; }
+      .features { gap: 20px; margin: 40px 0; }
+      .feature-card { padding: 20px; min-height: auto; }
+      .final { padding: 28px; }
+      .final p { font-size: 1rem; }
+      .modal-content { padding: 20px; }
+      .footer-link { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body class="dark">
+<div class="container">
+  <div class="navbar">
+    <div class="logo" id="logoLink">
+      <div class="logo">WOLTRON SOLUTIONS</div>
+      <div class="logo-sub">АВТОМАТИЗАЦИЯ БИЗНЕСА</div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Главная</a>
+      <a href="assistants.html" class="nav-link">Ассистенты</a>
+      <a href="#about" class="nav-link">О нас</a>
+      <a href="services.html" class="nav-link">Услуги</a>
+      <a href="#contact" class="nav-link">Контакты</a>
+      <a href="privacy.html" class="nav-link">Конфиденциальность</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="hero" id="hero">
+      <div class="hero-content">
+        <div class="badge">Решаем любые проблемы автоматизации</div>
+        <h1>Автоматизируем продажи и поддержку через AI + сайты под ключ</h1>
+        <p class="hero-text">«Ваши проблемы — наша работа. Ничего не обещаем. Просто решаем.»</p>
+        <div class="tag-group">
+          <span class="tag">🤖 AI-ассистенты</span>
+          <span class="tag">🌐 Сайты под ключ</span>
+          <span class="tag">⚙️ Автоматизация</span>
+        </div>
+        <div class="button-group">
+          <a href="services.html" class="btn btn-primary">🚀 Все услуги</a>
+          <a href="#contact" class="btn btn-outline">💬 Написать нам</a>
+        </div>
+      </div>
+      <div class="hero-side" id="assistants">
+        <div class="comp-title">Ключевые компетенции</div>
+        <div class="comp-card card">
+          <h4>🤖 AI-ассистенты</h4>
+          <p>Чат-боты и голосовые помощники 24/7. Собирают заявки, отвечают на вопросы, обучаются на ваших документах.</p>
+        </div>
+        <div class="comp-card card">
+          <h4>🌐 Сайты любой сложности</h4>
+          <p>От визиток до маркетплейсов. Адаптивная вёрстка, CRM-интеграция, админ-панели, онлайн-запись.</p>
+        </div>
+        <div class="comp-card card">
+          <h4>⚙️ Автоматизация процессов</h4>
+          <p>Связываем CRM, Telegram, сайты и AI в единую систему. Экономия часов рутины, прозрачность на всех этапах.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="features" id="services">
+      <div class="card feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Реакция за секунды</h3>
+        <p class="feature-desc">Клиент не ждёт — клиенты не остывают. Мгновенные ответы в чатах и ассистентах 24/7.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 class="feature-title">Контроль без хаоса</h3>
+        <p class="feature-desc">Админ-панель: кто, когда, с каким бюджетом. Полная статистика по клиентам.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3 class="feature-title">Никакой магии</h3>
+        <p class="feature-desc">Прозрачная настройка, фикс цена, отчёт. Без скрытых условий и воды.</p>
+      </div>
+    </div>
+
+    <div class="about" id="about">
+      <div>
+        <div class="about-title">О компании</div>
+        <div style="height: 2px; width: 60px; background: #4a5568; margin-bottom: 24px;"></div>
+        <div class="about-text">
+          <p><strong>Woltron Solutions</strong> — команда инженеров автоматизации, которая превращает хаос процессов в работающую систему. Мы не продаём воздух и не обещаем золотые горы. Наш метод: берём реальную боль бизнеса и закрываем её технологией.</p>
+          <p>Мы работаем с бизнесом от небольших агентств до сетевых компаний. Экспертиза — связать CRM, сайты, мессенджеры и AI в единый организм, который приносит клиентов даже ночью. Также <strong>разрабатываем сайты любой сложности</strong>.</p>
+          <p>«Ваши проблемы — наша работа» — это не слоган, а договор. Прозрачная автоматизация с ежемесячным фиксом и отчётами.</p>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number">Докажем делом</div>
+            <div class="stat-label">результат вместо слов</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">поддержка</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2-4 ч</div>
+            <div class="stat-label">интеграция</div>
+          </div>
+        </div>
+      </div>
+      <div class="card why-card">
+        <h3>Почему мы</h3>
+        <ul class="why-list">
+          <li>✅ Решаем, а не обещаем</li>
+          <li>✅ Прозрачная ежемесячная оплата</li>
+          <li>✅ Полная интеграция под ключ</li>
+          <li>✅ Поддержка 24/7 без выходных</li>
+        </ul>
+        <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(26,42,94,0.1);">
+          <p style="font-weight: 700;">Индивидуальный подход</p>
+          <p style="font-size: 0.85rem; margin-top: 8px;">Подберём решение под ваш бюджет и задачи</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="final card">
+      <p>Строим <span style="font-weight: 800;">индивидуальную архитектуру</span> автоматизации под ваш бизнес</p>
+      <p style="margin-top: 14px; font-weight: 500;">Ежемесячная оплата. Прозрачно. Без воды. Поддержка 24/7.</p>
+    </div>
+  </main>
+
+  <footer id="contact">
+    <div style="max-width: 550px; margin: 0 auto;">
+      <h3 style="font-size: 1.4rem;">📱 Решаем проблемы — быстро</h3>
+      <p style="margin-top: 10px;">Напишите нам. Расскажите, что болит в бизнесе.</p>
+      <div class="contact-row">
+        <a href="tel:+79506122307" class="contact-link">📞 +7 (950) 612-23-07</a>
+        <div class="contact-link" id="whatsappBtn">💬 WhatsApp</div>
+        <div class="contact-link" id="telegramBtn">✈️ Telegram</div>
+      </div>
+      <div class="footer-links">
+        <a class="footer-link" id="privacyPolicyLink">Политика конфиденциальности</a>
+      </div>
+      <p style="font-size: 0.7rem; margin-top: 28px; opacity: 0.5;">WOLTRON SOLUTIONS — автоматизация бизнеса и разработка сайтов</p>
+    </div>
+  </footer>
+</div>
+
+<div class="floating-theme" id="floatingThemeToggle">🌓 Светлая тема</div>
+
+<!-- Модальное окно с политикой конфиденциальности -->
+<div id="privacyModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Политика конфиденциальности</h2>
+      <span class="close-modal">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p><strong>Woltron Solutions</strong> (далее — Компания) уважает вашу конфиденциальность и обязуется защищать персональные данные пользователей.</p>
+      
+      <h3>1. Какие данные мы собираем</h3>
+      <p>При обращении через телефон, Telegram или форму на сайте мы можем получать: имя, номер телефона, email (при необходимости), а также информацию о вашем бизнесе в рамках консультации.</p>
+      
+      <h3>2. Как мы используем данные</h3>
+      <p>Исключительно для связи с вами, предоставления услуг, консультаций и улучшения качества сервиса. Мы не передаём данные третьим лицам без вашего согласия, кроме случаев, предусмотренных законодательством РФ.</p>
+      
+      <h3>3. Хранение и защита</h3>
+      <p>Данные хранятся на защищённых серверах, доступ к ним имеют только уполномоченные сотрудники. Мы принимаем организационные и технические меры для предотвращения утечек.</p>
+      
+      <h3>4. Ваши права</h3>
+      <p>Вы можете запросить удаление или изменение ваших данных, написав нам в Telegram: <strong>@VoLTRoN_megaboy</strong>. Мы обработаем запрос в течение 7 рабочих дней.</p>
+      
+      <h3>5. Изменения политики</h3>
+      <p>Компания оставляет за собой право обновлять политику. Актуальная версия всегда доступна на этом сайте.</p>
+      
+      <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">Последнее обновление: 29 мая 2026 года</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ========== ТЕМА ==========
+    const themeToggle = document.getElementById('floatingThemeToggle');
+    const body = document.body;
+
+    function setTheme(theme) {
+      body.classList.remove('dark', 'light');
+      body.classList.add(theme);
+      localStorage.setItem('theme', theme);
+      themeToggle.textContent = theme === 'light' ? '🌙 Тёмная тема' : '🌓 Светлая тема';
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+    });
+
+    // ========== ПЛАВНАЯ ПРОКРУТКА ДЛЯ ЯКОРЕЙ ==========
+    document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const hash = this.getAttribute('href');
+        if (hash === '#about' || hash === '#contact') {
+          e.preventDefault();
+          const section = document.getElementById(hash.substring(1));
+          if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Кнопки "Все услуги" и "Написать нам"
+    const allServicesBtn = document.querySelector('.btn-primary[href="services.html"]');
+    if (allServicesBtn) {
+      allServicesBtn.addEventListener('click', function(e) {
+        // ссылка и так ведёт на services.html
+      });
+    }
+
+    const contactBtn = document.querySelector('.btn-outline[href="#contact"]');
+    if (contactBtn) {
+      contactBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const contactSection = document.getElementById('contact');
+        if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    // ========== ЛОГОТИП НАВЕРХ ==========
+    const logoLink = document.getElementById('logoLink');
+    if(logoLink) {
+      logoLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // ========== КОПИРОВАНИЕ КОНТАКТОВ ==========
+    function setupCopyButton(btnId, text) {
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
+      let active = false;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!active) {
+          btn.innerHTML = btnId === 'whatsappBtn' ? '📋 +7 (950) 612-23-07' : '📋 @VoLTRoN_megaboy';
+          active = true;
+        } else {
+          navigator.clipboard.writeText(text);
+          btn.innerHTML = '✅ Скопировано!';
+          setTimeout(() => {
+            btn.innerHTML = btnId === 'whatsappBtn' ? '💬 WhatsApp' : '✈️ Telegram';
+            active = false;
+          }, 1500);
+        }
+      });
+    }
+    setupCopyButton('whatsappBtn', '+79506122307');
+    setupCopyButton('telegramBtn', '@VoLTRoN_megaboy');
+
+    // ========== ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ ==========
+    const modal = document.getElementById('privacyModal');
+    const privacyBtn = document.getElementById('privacyPolicyLink');
+    const closeBtn = document.querySelector('.close-modal');
+
+    if(privacyBtn && modal) {
+      privacyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    if(closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+    }
+
+    if(modal) {
+      modal.addEventListener('click', function(e) {
+        if(e.target === modal) {
+          modal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if(e.key === 'Escape' && modal && modal.classList.contains('show')) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+  })();
+</script>
+
+<!-- Плавающий ассистент Никита -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<div id="nikitaWidget" style="position: fixed; bottom: 90px; right: 20px; z-index: 10000;">
+    <div id="nikitaBtn" style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); background: #2a3a60;">
+        <span style="font-size: 28px;">💬</span>
+    </div>
+</div>
+
+<script>
+(function() {
+    const BOT_TOKEN = "8728697117:AAHlhEQuHg42Bd4cVpywZaDbhgkBz7Xxgaw";
+    const CHAT_ID = "1415341880";
+    const MY_TELEGRAM = "@VoLTRoN_megaboy";
+    
+    let chatVisible = false;
+    let step = 0;
+    let clientName = "", clientBusiness = "", clientProblem = "", clientPhone = "";
+    let leadSent = false;
+    let selectedServices = [];
+    let history = [];
+    let isWaiting = false;
+    
+    function getTheme() {
+        return document.body.classList.contains('dark') ? 'dark' : 'light';
+    }
+    
+    function updateButtonTheme() {
+        const btn = document.getElementById('nikitaBtn');
+        if (!btn) return;
+        const isDark = getTheme() === 'dark';
+        btn.style.background = isDark ? '#2a3a60' : '#1a2a5e';
+    }
+    
+    const observer = new MutationObserver(() => updateButtonTheme());
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    
+    function saveState() {
+        const state = {
+            step, clientName, clientBusiness, clientProblem, clientPhone,
+            leadSent, selectedServices, history, version: 2
+        };
+        localStorage.setItem('nikita_state', JSON.stringify(state));
+    }
+    
+    function loadState() {
+        try {
+            const saved = localStorage.getItem('nikita_state');
+            if (!saved) return false;
+            const state = JSON.parse(saved);
+            if (state.version !== 2) return false;
+            step = state.step;
+            clientName = state.clientName || "";
+            clientBusiness = state.clientBusiness || "";
+            clientProblem = state.clientProblem || "";
+            clientPhone = state.clientPhone || "";
+            leadSent = state.leadSent || false;
+            selectedServices = state.selectedServices || [];
+            history = state.history || [];
+            return true;
+        } catch(e) { return false; }
+    }
+    
+    function clearState() {
+        localStorage.removeItem('nikita_state');
+    }
+    
+    function addMessageToChat(container, text, isUser) {
+        const div = document.createElement('div');
+        div.style.cssText = `display: flex; justify-content: ${isUser ? 'flex-end' : 'flex-start'}; margin-bottom: 12px;`;
+        const bubble = document.createElement('div');
+        const isDark = getTheme() === 'dark';
+        bubble.style.cssText = `background: ${isUser ? (isDark ? '#2a3a60' : '#eef2fa') : (isDark ? '#1a1a2e' : '#ffffff')}; color: ${isUser ? (isDark ? '#eef2ff' : '#1a2a5e') : (isDark ? '#eef2ff' : '#1a2a5e')}; padding: 10px 14px; border-radius: 18px; max-width: 85%; word-wrap: break-word; font-size: 13px; font-family: 'Inter', sans-serif; border-bottom-${isUser ? 'right' : 'left'}-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);`;
+        bubble.innerText = text;
+        div.appendChild(bubble);
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+    
+    function showTyping(container) {
+        const typingDiv = document.createElement('div');
+        typingDiv.id = 'nikitaTyping';
+        typingDiv.style.cssText = 'display: flex; justify-content: flex-start; margin-bottom: 12px;';
+        const bubble = document.createElement('div');
+        const isDark = getTheme() === 'dark';
+        bubble.style.cssText = `background: ${isDark ? '#1a1a2e' : '#f0f4fc'}; padding: 12px 16px; border-radius: 18px; border-bottom-left-radius: 4px; display: flex; gap: 4px;`;
+        bubble.innerHTML = '<span style="animation: bounce 0.5s infinite ease;">●</span><span style="animation: bounce 0.5s infinite ease 0.15s;">●</span><span style="animation: bounce 0.5s infinite ease 0.3s;">●</span>';
+        typingDiv.appendChild(bubble);
+        container.appendChild(typingDiv);
+        container.scrollTop = container.scrollHeight;
+        return typingDiv;
+    }
+    
+    function hideTyping(typingDiv) {
+        if (typingDiv && typingDiv.remove) typingDiv.remove();
+    }
+    
+    async function sendLeadToTelegram() {
+        if (leadSent) return;
+        if (!clientName || !clientPhone) return;
+        const now = new Date().toLocaleString('ru-RU');
+        let message = `🆕 НОВЫЙ ЛИД С САЙТА\n\n👤 Имя: ${clientName}\n📞 Телефон: ${clientPhone}`;
+        if (clientBusiness) message += `\n🏢 Бизнес: ${clientBusiness}`;
+        if (clientProblem) message += `\n⚡ Проблема: ${clientProblem}`;
+        if (selectedServices.length) message += `\n🛒 Выбрано услуг: ${selectedServices.join(', ')}`;
+        message += `\n⏰ ${now}`;
+        try {
+            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+            });
+        } catch(e) {}
+        leadSent = true;
+        saveState();
+    }
+    
+    async function sendServiceUpdate(serviceName, container) {
+        if (!serviceName) return;
+        if (!selectedServices.includes(serviceName)) {
+            selectedServices.push(serviceName);
+            const message = `🛒 КЛИЕНТ ДОБАВИЛ УСЛУГУ\n\n👤 Имя: ${clientName}\n📞 Телефон: ${clientPhone}\n🛍️ Услуга: ${serviceName}\n\nВсе услуги: ${selectedServices.join(', ')}`;
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+                });
+            } catch(e) {}
+            addMessageToChat(container, `✅ Добавил "${serviceName}" в заказ. Что-то ещё?`, false);
+            saveState();
+        }
+    }
+    
+    async function getAIResponse(userMessage, container) {
+        const systemPrompt = `Ты — Никита, специалист по автоматизации из Woltron Solutions.
+
+ИЗВЕСТНО (НЕ ПЕРЕСПРАШИВАЙ ЭТО):
+Имя: ${clientName || 'не указано'}
+Бизнес: ${clientBusiness || 'не указан'}
+Проблема: ${clientProblem || 'не указана'}
+Телефон: ${clientPhone || 'не указан'}
+
+ЦЕНЫ:
+- Админ-панель: 40 000 — 60 000 ₽
+- Виджет на сайт: 7 000 ₽
+- CRM интеграция: от 25 000 ₽
+- Базовый ассистент: 22 000 ₽ + 15 000 ₽/мес
+- Сайт (лендинг): от 40 000 ₽
+
+ПРАВИЛА:
+1. НИКОГДА НЕ ПЕРЕСПРАШИВАЙ то, что уже есть в ИЗВЕСТНО.
+2. Если клиент спрашивает "что это" — просто объясни, НЕ ДОБАВЛЯЙ услугу.
+3. Добавляй услугу ТОЛЬКО если клиент явно сказал "да", "хочу", "добавь".
+4. Будь дружелюбным, полезным, отвечай на любые вопросы.`;
+        
+        const messages = [
+            { role: "system", content: systemPrompt },
+            ...history.slice(-15),
+            { role: "user", content: userMessage }
+        ];
+        
+        try {
+            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
+                body: JSON.stringify({ model: "openai/gpt-4o-mini", messages: messages, temperature: 0.8, max_tokens: 400 })
+            });
+            const data = await response.json();
+            const reply = data.choices?.[0]?.message?.content || "Ошибка, попробуйте позже.";
+            
+            const lowerMsg = userMessage.toLowerCase();
+            const yesWords = ['да', '+', 'давай', 'хочу', 'добавь', 'возьму', 'беру', 'согласен', 'конечно', 'ок'];
+            const isAgreement = yesWords.some(w => lowerMsg.includes(w));
+            
+            if (isAgreement) {
+                if (lowerMsg.includes('админ')) await sendServiceUpdate('Админ-панель', container);
+                else if (lowerMsg.includes('виджет')) await sendServiceUpdate('Виджет на сайт', container);
+                else if (lowerMsg.includes('crm') || lowerMsg.includes('интеграцию')) await sendServiceUpdate('CRM интеграция', container);
+                else if (lowerMsg.includes('сайт') || lowerMsg.includes('лендинг')) await sendServiceUpdate('Сайт под ключ', container);
+            }
+            
+            history.push({ role: "user", content: userMessage });
+            history.push({ role: "assistant", content: reply });
+            if (history.length > 30) history = history.slice(-30);
+            saveState();
+            
+            return reply;
+        } catch(e) {
+            return `Напишите основателю напрямую: ${MY_TELEGRAM}`;
+        }
+    }
+    
+    async function processMessage(msg, container) {
+        addMessageToChat(container, msg, true);
+        saveState();
+        
+        if (leadSent || step === 4) {
+            isWaiting = true;
+            const typingDiv = showTyping(container);
+            const reply = await getAIResponse(msg, container);
+            hideTyping(typingDiv);
+            addMessageToChat(container, reply, false);
+            isWaiting = false;
+            return;
+        }
+        
+        if (step === 0) {
+            clientName = msg;
+            step = 1;
+            addMessageToChat(container, `Приятно познакомиться, ${clientName}! 👋 Расскажите, чем занимается ваш бизнес?`, false);
+            saveState();
+        } else if (step === 1 && !clientBusiness) {
+            clientBusiness = msg;
+            step = 2;
+            addMessageToChat(container, "Какая проблема или задача? Что нужно автоматизировать?", false);
+            saveState();
+        } else if (step === 2 && !clientProblem) {
+            clientProblem = msg;
+            step = 3;
+            addMessageToChat(container, "Какой номер телефона для связи?", false);
+            saveState();
+        } else if (step === 3 && !clientPhone) {
+            let phone = msg.replace(/\D/g, '');
+            if (phone.length === 10) phone = '+7' + phone;
+            else if (phone.length === 11 && phone[0] === '7') phone = '+' + phone;
+            else if (phone.length === 11 && phone[0] === '8') phone = '+7' + phone.slice(1);
+            else phone = msg;
+            clientPhone = phone;
+            step = 4;
+            await sendLeadToTelegram();
+            addMessageToChat(container, `Спасибо, ${clientName}! Я передал данные основателю. Он свяжется с вами.\n\nХотите добавить дополнительные возможности?\n• Админ-панель — 40 000 ₽\n• Виджет на сайт — 7 000 ₽\n• CRM интеграция — от 25 000 ₽\n• Сайт под ключ (лендинг от 40 000 ₽)\n\nНапишите "да, хочу админку" или свяжитесь с основателем: ${MY_TELEGRAM}`, false);
+            saveState();
+        } else {
+            isWaiting = true;
+            const typingDiv = showTyping(container);
+            const reply = await getAIResponse(msg, container);
+            hideTyping(typingDiv);
+            addMessageToChat(container, reply, false);
+            isWaiting = false;
+        }
+    }
+    
+    function createChatWindow() {
+        const chatDiv = document.createElement('div');
+        chatDiv.id = 'nikitaChat';
+        const isDark = getTheme() === 'dark';
+        chatDiv.style.cssText = `position: fixed; bottom: 100px; right: 20px; width: 380px; height: 550px; background: ${isDark ? '#0d0d12' : '#ffffff'}; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; overflow: hidden; z-index: 10000; border: 1px solid ${isDark ? 'rgba(255,255,255,0.1)' : '#e2e8f0'}; font-family: 'Inter', sans-serif;`;
+        
+        chatDiv.innerHTML = `
+            <div style="background: #1a2a5e; padding: 15px 20px; color: white; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1a2a5e; font-weight: bold; font-size: 18px;">Н</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 16px;">Никита</div>
+                        <div style="font-size: 11px; color: #25D366;">● онлайн</div>
+                    </div>
+                </div>
+                <button id="closeNikita" style="background: none; border: none; color: white; font-size: 22px; cursor: pointer; opacity: 0.7;">✕</button>
+            </div>
+            <div id="nikitaMessages" style="flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 8px; background: ${isDark ? '#0a0a0c' : '#f5f7fc'};"></div>
+            <div style="padding: 12px 16px; border-top: 1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#e2e8f0'}; display: flex; gap: 10px; background: ${isDark ? '#0d0d12' : '#ffffff'};">
+                <textarea id="nikitaInput" placeholder="Напишите сообщение..." style="flex: 1; background: ${isDark ? '#1a1a2e' : '#f0f4fc'}; border: 1px solid ${isDark ? '#2a3a60' : '#d0dcec'}; border-radius: 24px; padding: 10px 16px; color: ${isDark ? '#eef2ff' : '#1a2a5e'}; resize: none; font-family: inherit; font-size: 14px; outline: none;" rows="1"></textarea>
+                <button id="nikitaSend" style="background: #2a3a60; border: none; border-radius: 50%; width: 42px; height: 42px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;">📤</button>
+            </div>
+        `;
+        
+        document.body.appendChild(chatDiv);
+        
+        if (!document.getElementById('nikitaAnimStyle')) {
+            const style = document.createElement('style');
+            style.id = 'nikitaAnimStyle';
+            style.textContent = `@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }`;
+            document.head.appendChild(style);
+        }
+        
+        const messagesContainer = document.getElementById('nikitaMessages');
+        const input = document.getElementById('nikitaInput');
+        const sendBtn = document.getElementById('nikitaSend');
+        
+        document.getElementById('closeNikita').onclick = () => {
+            chatDiv.remove();
+            chatVisible = false;
+        };
+        
+        const sendHandler = () => {
+            const msg = input.value.trim();
+            if (!msg || isWaiting) return;
+            input.value = '';
+            input.style.height = 'auto';
+            processMessage(msg, messagesContainer);
+        };
+        
+        sendBtn.onclick = sendHandler;
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendHandler();
+            }
+        });
+        input.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+        });
+        
+        if (step === 0 && !clientName) {
+            addMessageToChat(messagesContainer, "Привет! 👋 Я Никита, специалист по автоматизации из Woltron Solutions. Как вас зовут?", false);
+        } else {
+            // Восстанавливаем историю сообщений
+            for (let i = 0; i < history.length; i++) {
+                const h = history[i];
+                if (h.role === 'user') addMessageToChat(messagesContainer, h.content, true);
+                else if (h.role === 'assistant') addMessageToChat(messagesContainer, h.content, false);
+            }
+            // Если есть собранные данные, показываем последний вопрос
+            if (step === 1 && clientName) {
+                addMessageToChat(messagesContainer, `Приятно познакомиться, ${clientName}! 👋 Расскажите, чем занимается ваш бизнес?`, false);
+            } else if (step === 2 && clientBusiness) {
+                addMessageToChat(messagesContainer, "Какая проблема или задача? Что нужно автоматизировать?", false);
+            } else if (step === 3 && clientProblem) {
+                addMessageToChat(messagesContainer, "Какой номер телефона для связи?", false);
+            } else if (step === 4 && leadSent) {
+                addMessageToChat(messagesContainer, `Спасибо, ${clientName}! Я передал данные основателю. Он свяжется с вами.\n\nХотите добавить дополнительные возможности?\n• Админ-панель — 40 000 ₽\n• Виджет на сайт — 7 000 ₽\n• CRM интеграция — от 25 000 ₽\n• Сайт под ключ (лендинг от 40 000 ₽)\n\nНапишите "да, хочу админку" или свяжитесь с основателем: ${MY_TELEGRAM}`, false);
+            }
+        }
+        
+        chatVisible = true;
+    }
+    
+    const btn = document.getElementById('nikitaBtn');
+    updateButtonTheme();
+    
+    btn.onclick = () => {
+        if (document.getElementById('nikitaChat')) {
+            document.getElementById('nikitaChat').remove();
+            chatVisible = false;
+        } else {
+            loadState();
+            createChatWindow();
+        }
+    };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Услуги | Woltron Solutions</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231a2a5e'/%3E%3Cstop offset='100%25' stop-color='%232a3a6e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='url(%23grad)' font-family='Georgia, serif' font-weight='bold'%3EW%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.2s ease;
+    }
+
+    /* ТЁМНАЯ ТЕМА */
+    body.dark {
+      background-color: #0a0a0c;
+      color: #eef2ff;
+    }
+    body.dark .card {
+      background: rgba(18, 24, 34, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 28px;
+    }
+    body.dark .card:hover {
+      background: rgba(28, 36, 50, 0.9);
+      border-color: rgba(255, 255, 255, 0.14);
+      transform: translateY(-2px);
+    }
+    body.dark .nav-link { color: #b0bedd; }
+    body.dark .nav-link:hover { color: #ffffff; }
+    body.dark .btn-primary {
+      background: #2a3a60;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    body.dark .btn-primary:hover {
+      background: #3a4a70;
+      transform: translateY(-2px);
+    }
+    body.dark .btn-secondary {
+      background: transparent;
+      border: 1.5px solid #5a6a88;
+      color: #d0dcff;
+    }
+    body.dark .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #aabbdd;
+    }
+    body.dark .contact-link {
+      color: #eef2ff;
+      background: rgba(30, 38, 50, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    body.dark .contact-link:hover {
+      background: #3a4a70;
+      transform: translateY(-2px);
+    }
+    body.dark .price { color: #25D366; }
+    body.dark .offer-card {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.08) 0%, rgba(37, 211, 102, 0.02) 100%);
+      border: 1px solid rgba(37, 211, 102, 0.2);
+    }
+    body.dark .integration-text {
+      color: #8a9ac0;
+    }
+
+    /* СВЕТЛАЯ ТЕМА */
+    body.light {
+      background: #f5f7fc;
+      color: #1a2a5e;
+    }
+    body.light .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+    }
+    body.light .card:hover {
+      box-shadow: 0 12px 28px -8px rgba(26, 42, 94, 0.12);
+      transform: translateY(-2px);
+    }
+    body.light .navbar { border-bottom: 1px solid #e2e8f0; }
+    body.light .nav-link { color: #2a3a6e; }
+    body.light .nav-link:hover { color: #0a1a4e; }
+    body.light .btn-primary {
+      background: #1a2a5e;
+      color: white;
+      box-shadow: 0 4px 12px rgba(26, 42, 94, 0.15);
+    }
+    body.light .btn-primary:hover {
+      background: #0f1f4a;
+      transform: translateY(-2px);
+    }
+    body.light .btn-secondary {
+      background: transparent;
+      border: 1.5px solid #2a4a8a;
+      color: #1a3a7a;
+    }
+    body.light .btn-secondary:hover {
+      background: #ffffff;
+      border-color: #1a2a5e;
+    }
+    body.light .contact-link {
+      color: #1a2a5e;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+    body.light .contact-link:hover {
+      background: #f0f4fc;
+      border-color: #1a2a5e;
+      transform: translateY(-2px);
+    }
+    body.light .price { color: #1a5e2a; }
+    body.light .offer-card {
+      background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+      border: 1px solid #c8e6c9;
+    }
+    body.light .integration-text {
+      color: #5a6a8e;
+    }
+
+    /* ОБЩИЕ СТИЛИ */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+    }
+
+    /* НАВИГАЦИЯ */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      margin-top: 2px;
+      opacity: 0.7;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    /* ПЛАВАЮЩАЯ КНОПКА ТЕМЫ */
+    .floating-theme {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background: rgba(15, 20, 30, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 60px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    body.light .floating-theme {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      color: #1a2a5e;
+    }
+    .floating-theme:hover { transform: scale(1.02); }
+
+    /* ГЛАВНЫЙ БЛОК: 70% | 30% */
+    .split-hero {
+      display: flex;
+      gap: 32px;
+      margin: 40px 0 60px;
+    }
+    .main-offer {
+      flex: 7;
+      padding: 40px;
+      border-radius: 32px;
+      position: relative;
+    }
+    body.dark .main-offer {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.06) 0%, rgba(37, 211, 102, 0) 100%);
+      border: 1px solid rgba(37, 211, 102, 0.15);
+    }
+    body.light .main-offer {
+      background: linear-gradient(135deg, #f0f9f1 0%, #ffffff 100%);
+      border: 1px solid #d0e6d2;
+    }
+    .robot-icon {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 4.5rem;
+      opacity: 0.85;
+      transition: transform 0.3s ease;
+    }
+    .robot-icon:hover {
+      transform: scale(1.05);
+    }
+    .main-offer h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      margin-top: 0;
+      padding-right: 80px;
+    }
+    .price-block {
+      margin: 20px 0 12px;
+    }
+    .price-one {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+    .price-one span {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+    .price-month {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+    .desc {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin: 20px 0;
+      max-width: 480px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stat-icon {
+      font-size: 1.3rem;
+    }
+    .stat-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .integration-wrapper {
+      margin: 24px 0;
+    }
+    .integration-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      padding: 8px 0;
+    }
+    .main-offer .btn {
+      margin-top: 16px;
+    }
+
+    /* ПРАВАЯ ПЛАШКА — ПРИЗЫВ */
+    .side-offer {
+      flex: 3;
+      padding: 40px;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .side-offer h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+    .side-offer p {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .offer-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .side-offer .btn-secondary {
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+    .business-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin: 16px 0 8px;
+    }
+    body.dark .business-badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    body.light .business-badge {
+      background: #eef2fa;
+      border: 1px solid #d0dcec;
+    }
+
+    /* ЗАГОЛОВКИ СЕКЦИЙ */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 48px 0 24px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ДВЕ КОЛОНКИ */
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin: 32px 0 48px;
+    }
+    .col {
+      border-radius: 28px;
+      overflow: hidden;
+    }
+    .col-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    }
+    .col-header h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .col-header p {
+      font-size: 0.8rem;
+      opacity: 0.6;
+      margin-top: 4px;
+    }
+    .services-list {
+      padding: 8px 0 16px;
+    }
+    .service-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      margin: 4px 12px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+    .service-item:hover {
+      transform: translateX(4px);
+    }
+    body.dark .service-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+    body.light .service-item:hover {
+      background: #f5f7fc;
+    }
+    .service-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .service-cost {
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* САЙТЫ */
+    .sites-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 32px 0 48px;
+    }
+    .site-card {
+      padding: 28px;
+      border-radius: 24px;
+      transition: all 0.25s;
+    }
+    .site-card:hover {
+      transform: translateY(-4px);
+    }
+    .site-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .site-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .site-price {
+      font-weight: 600;
+      margin: 12px 0 8px;
+    }
+    .site-desc {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      line-height: 1.45;
+    }
+
+    /* КОНТАКТЫ */
+    .contact-section {
+      text-align: center;
+      padding: 48px 0 32px;
+      border-top: 1px solid rgba(128, 128, 128, 0.1);
+      margin-top: 32px;
+      scroll-margin-top: 80px;
+    }
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 16px;
+    }
+    .contact-link {
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    footer {
+      padding: 48px 0 40px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .footer-link {
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    /* АДАПТИВ */
+    @media (max-width: 1000px) {
+      .split-hero { flex-direction: column; }
+      .main-offer { text-align: center; }
+      .desc { margin-left: auto; margin-right: auto; }
+      .stats { justify-content: center; text-align: left; }
+      .integration-wrapper { text-align: center; }
+      .integration-text { justify-content: center; }
+      .side-offer { text-align: center; align-items: center; }
+      .side-offer .btn-secondary { align-self: center; }
+      .sites-grid { grid-template-columns: repeat(2, 1fr); }
+      .robot-icon { right: 20px; top: 20px; font-size: 3.5rem; }
+      .main-offer h2 { padding-right: 0; margin-top: 50px; }
+    }
+    @media (max-width: 900px) {
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .nav-links { width: 100%; justify-content: space-between; }
+      .two-columns { grid-template-columns: 1fr; gap: 28px; }
+      .stats { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .sites-grid { grid-template-columns: 1fr; }
+      .main-offer h2 { font-size: 1.5rem; }
+      .price-one { font-size: 1.5rem; }
+      .service-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .service-cost { align-self: flex-end; }
+      .robot-icon { font-size: 3rem; top: 15px; right: 15px; }
+      .main-offer { padding: 30px; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 16px; }
+      .main-offer, .side-offer { padding: 24px; }
+      .robot-icon { font-size: 2.5rem; }
+      .main-offer h2 { margin-top: 45px; font-size: 1.4rem; }
+      .price-one { font-size: 1.3rem; }
+      .stat-text { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body class="dark">
+<div class="container">
+  <div class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">
+      <div>WOLTRON SOLUTIONS</div>
+      <div class="logo-sub">АВТОМАТИЗАЦИЯ БИЗНЕСА</div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Главная</a>
+      <a href="assistants.html" class="nav-link">Ассистенты</a>
+      <a href="index.html#about" class="nav-link">О нас</a>
+      <a href="services.html" class="nav-link">Услуги</a>
+      <a href="index.html#contact" class="nav-link">Контакты</a>
+      <a href="privacy.html" class="nav-link">Конфиденциальность</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="split-hero">
+      <div class="main-offer">
+        <div class="robot-icon">🤖</div>
+        <h2>Базовый ассистент</h2>
+        <div class="price-block">
+          <div class="price-one">22 000 ₽ <span>настройка</span></div>
+          <div class="price-month">+ 15 000 ₽ / месяц сопровождение</div>
+        </div>
+        <div class="desc">Ассистент, который работает 24/7. Отвечает на вопросы, собирает заявки, передаёт менеджеру. Подключается за 2–4 часа.</div>
+        
+        <div class="stats">
+          <div class="stat"><div class="stat-icon">⏱️</div><div class="stat-text">Экономит до 100 часов менеджера в месяц</div></div>
+          <div class="stat"><div class="stat-icon">📈</div><div class="stat-text">Увеличивает конверсию в заявки на 30%</div></div>
+          <div class="stat"><div class="stat-icon">🔧</div><div class="stat-text">Работает без выходных и перерывов</div></div>
+          <div class="stat"><div class="stat-icon">📋</div><div class="stat-text">Собирает данные клиентов автоматически</div></div>
+        </div>
+
+        <div class="integration-wrapper">
+          <div class="integration-text">🔄 Интегрируем куда угодно — Telegram, сайт, CRM, соцсети, любые ваши системы</div>
+        </div>
+
+        <button class="btn btn-primary" id="baseBotOrderBtn">🚀 Заказать</button>
+      </div>
+
+      <div class="side-offer offer-card">
+        <div class="offer-icon">💡</div>
+        <h3>Автоматизируем любые процессы</h3>
+        <p>Расскажите о своей задаче — мы найдём решение. Интеграции, нестандартные сценарии, сложные воронки. Всё, что нужно вашему бизнесу.</p>
+        <div class="business-badge">🌍 Работаем с любым бизнесом · Любые направления</div>
+        <p style="font-size: 0.85rem; font-weight: 500; margin-top: 12px;">Свяжитесь с нами → обсудим → реализуем</p>
+        <button class="btn btn-secondary" id="contactOfferBtn">💬 Обсудить проект</button>
+      </div>
+    </div>
+
+    <div class="two-columns">
+      <div class="card col">
+        <div class="col-header">
+          <h3>🏠 Недвижимость</h3>
+          <p>Дополнительные услуги для агентств и риелторов</p>
+        </div>
+        <div class="services-list">
+          <div class="service-item"><span class="service-name">📊 Админ-панель</span><span class="service-cost">40 000 — 60 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🎨 Виджет на сайт</span><span class="service-cost">7 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🔄 Интеграция с CRM</span><span class="service-cost">от 25 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">📚 База знаний (ЖК, цены, акции)</span><span class="service-cost">30 000 — 50 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">✨ Брендирование (White Label)</span><span class="service-cost">30 000 — 50 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🧠 Умные сценарии (воронка)</span><span class="service-cost">20 000 — 25 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">📧 Ежедневный отчёт на почту</span><span class="service-cost">7 000 — 10 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🏢 Мульти-агентство</span><span class="service-cost">от 60 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🗺️ Карта объектов</span><span class="service-cost">18 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🛡️ Защита от спама</span><span class="service-cost">10 000 ₽</span></div>
+        </div>
+      </div>
+
+      <div class="card col">
+        <div class="col-header">
+          <h3>🚗 Автосалоны</h3>
+          <p>Дополнительные услуги для дилеров и автохолдингов</p>
+        </div>
+        <div class="services-list">
+          <div class="service-item"><span class="service-name">📊 Админ-панель</span><span class="service-cost">40 000 — 60 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🎨 Виджет на сайт</span><span class="service-cost">7 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🔄 Интеграция с CRM</span><span class="service-cost">от 25 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">📚 База знаний (модели, цены, акции)</span><span class="service-cost">30 000 — 50 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">✨ Брендирование (White Label)</span><span class="service-cost">30 000 — 50 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🧠 Умные сценарии (воронка)</span><span class="service-cost">20 000 — 25 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">📧 Ежедневный отчёт на почту</span><span class="service-cost">7 000 — 10 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🏢 Мульти-салон</span><span class="service-cost">от 60 000 ₽</span></div>
+          <div class="service-item"><span class="service-name">🛡️ Защита от спама</span><span class="service-cost">10 000 — 15 000 ₽</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">🌐 Разработка сайтов</div>
+    <div class="sites-grid">
+      <div class="card site-card"><div class="site-icon">🏢</div><h4>Корпоративный сайт</h4><div class="site-price">от 80 000 ₽</div><div class="site-desc">Полноценный сайт с админ-панелью. Под ключ.</div></div>
+      <div class="card site-card"><div class="site-icon">🎯</div><h4>Лендинг</h4><div class="site-price">от 40 000 ₽</div><div class="site-desc">Продающая страница. Адаптив, формы захвата.</div></div>
+      <div class="card site-card"><div class="site-icon">🛒</div><h4>Интернет-магазин</h4><div class="site-price">от 150 000 ₽</div><div class="site-desc">Корзина, оплата, админка, 1С.</div></div>
+      <div class="card site-card"><div class="site-icon">📈</div><h4>SEO-оптимизация</h4><div class="site-price">от 30 000 ₽</div><div class="site-desc">Продвижение в поиске. Мета-теги, семантика.</div></div>
+      <div class="card site-card"><div class="site-icon">🔧</div><h4>Техподдержка</h4><div class="site-price">от 10 000 ₽/мес</div><div class="site-desc">Обновления, бэкапы, правки, мониторинг.</div></div>
+      <div class="card site-card"><div class="site-icon">🛡️</div><h4>Защита от взлома</h4><div class="site-price">от 15 000 ₽</div><div class="site-desc">WAF, DDoS-защита, мониторинг.</div></div>
+    </div>
+
+    <div class="contact-section" id="contact">
+      <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">📬 Нужна консультация?</div>
+      <p style="font-size: 0.85rem; opacity: 0.6; margin-bottom: 24px;">Напишите — подберём решение под ваш бюджет</p>
+      <div class="contact-buttons">
+        <a href="tel:+79506122307" class="contact-link">📞 +7 (950) 612-23-07</a>
+        <div class="contact-link" id="whatsappBtn">💬 WhatsApp</div>
+        <div class="contact-link" id="telegramBtn">✈️ Telegram</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Главная</a>
+      <a href="assistants.html" class="footer-link">Ассистенты</a>
+      <a href="services.html" class="footer-link">Услуги</a>
+      <a href="privacy.html" class="footer-link">Конфиденциальность</a>
+    </div>
+    <p style="font-size: 0.7rem; opacity: 0.5;">WOLTRON SOLUTIONS — автоматизация бизнеса и разработка сайтов</p>
+  </footer>
+</div>
+
+<div class="floating-theme" id="floatingThemeToggle">🌓 Светлая тема</div>
+
+<script>
+  (function() {
+    const themeToggle = document.getElementById('floatingThemeToggle');
+    const body = document.body;
+
+    function setTheme(theme) {
+      body.classList.remove('dark', 'light');
+      body.classList.add(theme);
+      localStorage.setItem('theme', theme);
+      themeToggle.textContent = theme === 'light' ? '🌙 Тёмная тема' : '🌓 Светлая тема';
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = body.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    function setupCopyButton(btnId, text) {
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
+      let active = false;
+      btn.addEventListener('click', function() {
+        if (!active) {
+          btn.innerHTML = btnId === 'whatsappBtn' ? '📋 +7 (950) 612-23-07' : '📋 @VoLTRoN_megaboy';
+          active = true;
+        } else {
+          navigator.clipboard.writeText(text);
+          btn.innerHTML = '✅ Скопировано!';
+          setTimeout(() => {
+            btn.innerHTML = btnId === 'whatsappBtn' ? '💬 WhatsApp' : '✈️ Telegram';
+            active = false;
+          }, 1500);
+        }
+      });
+    }
+    setupCopyButton('whatsappBtn', '+79506122307');
+    setupCopyButton('telegramBtn', '@VoLTRoN_megaboy');
+
+    function scrollToContacts() {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    const baseBotBtn = document.getElementById('baseBotOrderBtn');
+    if (baseBotBtn) {
+      baseBotBtn.addEventListener('click', scrollToContacts);
+    }
+
+    const contactOfferBtn = document.getElementById('contactOfferBtn');
+    if (contactOfferBtn) {
+      contactOfferBtn.addEventListener('click', scrollToContacts);
+    }
+  })();
+</script>
+</body>
+</html>

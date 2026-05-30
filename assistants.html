@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ассистенты | Woltron Solutions — автоматизация бизнеса</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231a2a5e'/%3E%3Cstop offset='100%25' stop-color='%232a3a6e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='url(%23grad)' font-family='Georgia, serif' font-weight='bold'%3EW%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.2s ease;
+    }
+
+    /* ТЁМНАЯ ТЕМА */
+    body.dark {
+      background-color: #0a0a0c;
+      color: #eef2ff;
+    }
+    body.dark .card {
+      background: rgba(18, 24, 34, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 28px;
+    }
+    body.dark .card:hover {
+      background: rgba(28, 36, 50, 0.9);
+      border-color: rgba(255, 255, 255, 0.14);
+      transform: translateY(-4px);
+    }
+    body.dark .nav-link { color: #b0bedd; }
+    body.dark .nav-link:hover { color: #ffffff; }
+    body.dark .contact-link {
+      color: #eef2ff;
+      background: rgba(30, 38, 50, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    body.dark .contact-link:hover { background: #3a4a70; transform: translateY(-2px); }
+    body.dark .footer-link { color: #8a9ac0; }
+    body.dark .footer-link:hover { color: #ffffff; }
+    body.dark .assistant-badge {
+      background: rgba(37, 211, 102, 0.15);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      color: #25D366;
+    }
+    body.dark .features-list li { background: rgba(255, 255, 255, 0.05); }
+    body.dark .play-pause {
+      background: rgba(255, 255, 255, 0.1);
+      color: #eef2ff;
+    }
+    body.dark .play-pause:hover { background: rgba(255, 255, 255, 0.2); }
+    body.dark .video-time { color: #8a9ac0; }
+    body.dark .niche-card {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.08) 0%, rgba(37, 211, 102, 0.02) 100%);
+      border: 1px solid rgba(37, 211, 102, 0.2);
+    }
+    body.dark .btn-accent {
+      background: #25D366;
+      color: #0a0a0c;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+    body.dark .btn-accent:hover {
+      background: #20b859;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    /* СВЕТЛАЯ ТЕМА */
+    body.light {
+      background: #f5f7fc;
+      color: #1a2a5e;
+    }
+    body.light .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+    }
+    body.light .card:hover {
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+    body.light .navbar { border-bottom: 1px solid #e2e8f0; }
+    body.light .nav-link { color: #2a3a6e; }
+    body.light .nav-link:hover { color: #0a1a4e; }
+    body.light .contact-link {
+      color: #1a2a5e;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+    body.light .contact-link:hover { background: #f0f4fc; border-color: #1a2a5e; transform: translateY(-2px); }
+    body.light .footer-link { color: #5a6a8e; }
+    body.light .footer-link:hover { color: #1a2a5e; }
+    body.light .assistant-badge {
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      color: #1a5e2a;
+    }
+    body.light .features-list li { background: #f0f4fc; }
+    body.light .play-pause {
+      background: #eef2fa;
+      color: #1a2a5e;
+    }
+    body.light .play-pause:hover { background: #e2e8f0; }
+    body.light .video-time { color: #5a6a8e; }
+    body.light .niche-card {
+      background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+      border: 1px solid #c8e6c9;
+    }
+    body.light .btn-accent {
+      background: #25D366;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+    }
+    body.light .btn-accent:hover {
+      background: #20b859;
+      transform: translateY(-2px);
+    }
+
+    /* ОБЩИЕ СТИЛИ */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+    }
+
+    /* навигация */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+    }
+    .logo:hover { opacity: 0.8; }
+    .logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    /* плавающая кнопка темы */
+    .floating-theme {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background: rgba(15, 20, 30, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 60px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    body.light .floating-theme {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      color: #1a2a5e;
+    }
+    .floating-theme:hover { transform: scale(1.02); }
+
+    /* страница ассистентов */
+    .page-header {
+      text-align: center;
+      margin: 40px 0 32px;
+    }
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .page-header p {
+      font-size: 1.1rem;
+      opacity: 0.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .assistants-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin: 48px 0;
+    }
+    .assistant-card {
+      border-radius: 32px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .assistant-header {
+      padding: 28px 28px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .assistant-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .assistant-avatar { font-size: 3rem; }
+    .assistant-name h2 { font-size: 1.6rem; font-weight: 800; }
+    .assistant-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .assistant-desc {
+      padding: 0 28px 16px;
+      opacity: 0.75;
+      flex-shrink: 0;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      background: #000;
+      aspect-ratio: 16 / 9;
+    }
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      cursor: pointer;
+      background: #000;
+    }
+    .video-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 28px 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .play-pause {
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 40px;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      font-family: inherit;
+    }
+    .video-time {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      font-family: monospace;
+    }
+    .features-list {
+      padding: 16px 28px 28px;
+      border-top: 1px solid rgba(128, 128, 128, 0.15);
+      flex-shrink: 0;
+    }
+    .features-list h4 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .features-list ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 40px;
+      white-space: nowrap;
+    }
+
+    /* ПЛАШКА "РАБОТАЕМ С ЛЮБЫМ БИЗНЕСОМ" С ЯРКОЙ КНОПКОЙ */
+    .niche-card {
+      margin: 40px 0 48px;
+      padding: 48px 32px;
+      border-radius: 32px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .niche-card:hover {
+      transform: translateY(-4px);
+    }
+    .niche-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+    .niche-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .niche-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    .niche-features {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .niche-feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 140px;
+    }
+    .niche-feature-icon {
+      font-size: 1.8rem;
+    }
+    .niche-feature-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .btn-accent {
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 16px 40px;
+    }
+
+    /* контакты в футере */
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 24px 0 12px;
+    }
+    .contact-link {
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    footer {
+      margin-top: 60px;
+      padding: 48px 0 40px;
+      text-align: center;
+      border-top: 1px solid rgba(128, 128, 128, 0.15);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .footer-link {
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .copy-hint {
+      font-size: 0.7rem;
+      opacity: 0.6;
+      margin-top: 4px;
+    }
+
+    /* ========== АДАПТИВ ========== */
+    @media (max-width: 1000px) {
+      .assistants-grid { gap: 30px; }
+      .assistant-header { padding: 22px 22px 12px; }
+      .assistant-desc { padding: 0 22px 12px; }
+      .video-controls { padding: 10px 22px 16px; }
+      .features-list { padding: 14px 22px 22px; }
+      .niche-title { font-size: 1.5rem; }
+    }
+    @media (max-width: 900px) {
+      .container { padding: 0 20px; }
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .nav-links { width: 100%; justify-content: space-between; }
+      .page-header h1 { font-size: 2.2rem; }
+      .floating-theme { bottom: 16px; right: 16px; padding: 8px 16px; font-size: 0.75rem; }
+      .assistant-name h2 { font-size: 1.4rem; }
+      .assistant-avatar { font-size: 2.5rem; }
+      .niche-features { gap: 20px; }
+    }
+    @media (max-width: 850px) {
+      .assistants-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 650px) {
+      .assistant-header { flex-direction: column; align-items: flex-start; }
+      .assistant-badge { white-space: normal; }
+      .video-controls { flex-direction: column; align-items: stretch; }
+      .play-pause { justify-content: center; }
+      .video-time { text-align: center; }
+      .features-list ul { flex-direction: column; }
+      .features-list li { white-space: normal; justify-content: center; }
+      .niche-card { padding: 32px 20px; }
+      .niche-title { font-size: 1.3rem; }
+      .niche-feature { min-width: 120px; }
+      .btn-accent { font-size: 1rem; padding: 14px 28px; }
+    }
+    @media (max-width: 550px) {
+      .nav-links { gap: 16px; justify-content: center; }
+      .nav-link { font-size: 0.85rem; }
+      .page-header h1 { font-size: 1.8rem; }
+      .page-header p { font-size: 0.95rem; }
+      .assistant-name h2 { font-size: 1.3rem; }
+      .contact-link { padding: 8px 18px; font-size: 0.85rem; }
+      .footer-links { gap: 16px; }
+      .footer-link { font-size: 0.75rem; }
+      .niche-features { flex-direction: column; align-items: center; gap: 16px; }
+    }
+    @media (max-width: 400px) {
+      .container { padding: 0 16px; }
+      .assistant-header { padding: 18px 18px 10px; }
+      .assistant-desc { padding: 0 18px 10px; font-size: 0.9rem; }
+      .video-controls { padding: 10px 18px 14px; }
+      .features-list { padding: 12px 18px 18px; }
+      .features-list li { font-size: 0.8rem; padding: 5px 12px; }
+      .play-pause { padding: 8px 16px; font-size: 0.85rem; }
+      .niche-card { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body class="dark">
+<div class="container">
+  <div class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">
+      <div>WOLTRON SOLUTIONS</div>
+      <div class="logo-sub">АВТОМАТИЗАЦИЯ БИЗНЕСА</div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Главная</a>
+      <a href="assistants.html" class="nav-link">Ассистенты</a>
+      <a href="index.html#about" class="nav-link">О нас</a>
+      <a href="services.html" class="nav-link">Услуги</a>
+      <a href="index.html#contact" class="nav-link">Контакты</a>
+      <a href="privacy.html" class="nav-link">Конфиденциальность</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <h1>🤖 Наши ассистенты</h1>
+      <p>Готовые решения для вашего бизнеса. Работают 24/7, отвечают на вопросы, собирают заявки и экономят ваше время.</p>
+    </div>
+
+    <div class="assistants-grid">
+      <!-- Ассистент Антон для автосалонов -->
+      <div class="assistant-card card">
+        <div class="assistant-header">
+          <div class="assistant-name">
+            <div class="assistant-avatar">👨‍🔧</div>
+            <h2>Антон</h2>
+          </div>
+          <div class="assistant-badge">🚗 Для автосалонов</div>
+        </div>
+        <p class="assistant-desc">Помогает клиентам подобрать автомобиль, записаться на тест-драйв, отвечает на вопросы о ценах и кредитах. Работает 24/7 без выходных.</p>
+        <div class="video-container">
+          <video id="antonVideo" preload="metadata">
+            <source src="anton_video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+        </div>
+        <div class="video-controls">
+          <button class="play-pause" id="antonPlayBtn">▶️ Посмотреть работу</button>
+          <span class="video-time" id="antonTime">00:00 / 00:00</span>
+        </div>
+        <div class="features-list">
+          <h4>📋 Что умеет Антон:</h4>
+          <ul>
+            <li>🚗 Подбор авто по параметрам</li>
+            <li>📅 Запись на тест-драйв</li>
+            <li>💰 Расчёт кредита и страховки</li>
+            <li>📞 Передача заявки менеджеру</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ассистент Елена для недвижимости -->
+      <div class="assistant-card card">
+        <div class="assistant-header">
+          <div class="assistant-name">
+            <div class="assistant-avatar">🏠</div>
+            <h2>Елена</h2>
+          </div>
+          <div class="assistant-badge">🏡 Для недвижимости</div>
+        </div>
+        <p class="assistant-desc">Помогает клиентам подобрать квартиру или дом, отвечает на вопросы о ценах, районе, ипотеке. Записывает на просмотры и собирает заявки.</p>
+        <div class="video-container">
+          <video id="elenaVideo" preload="metadata">
+            <source src="elena_video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+        </div>
+        <div class="video-controls">
+          <button class="play-pause" id="elenaPlayBtn">▶️ Посмотреть работу</button>
+          <span class="video-time" id="elenaTime">00:00 / 00:00</span>
+        </div>
+        <div class="features-list">
+          <h4>📋 Что умеет Елена:</h4>
+          <ul>
+            <li>🏠 Подбор жилья по фильтрам</li>
+            <li>📅 Запись на просмотр</li>
+            <li>💰 Расчёт ипотеки</li>
+            <li>📍 Информация о районе</li>
+            <li>📞 Передача заявки агенту</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЯРКАЯ ПЛАШКА "РАБОТАЕМ С ЛЮБЫМ БИЗНЕСОМ" -->
+    <div class="niche-card offer-card">
+      <div class="niche-icon">🌍</div>
+      <div class="niche-title">Работаем с любым бизнесом</div>
+      <div class="niche-subtitle">Подгоним ассистента под вашу нишу — от интернет-магазинов до клиник и сферы услуг</div>
+      <div class="niche-features">
+        <div class="niche-feature">
+          <div class="niche-feature-icon">🎯</div>
+          <div class="niche-feature-text">Адаптация под ваши задачи</div>
+        </div>
+        <div class="niche-feature">
+          <div class="niche-feature-icon">💰</div>
+          <div class="niche-feature-text">Прозрачная цена под ваш бюджет</div>
+        </div>
+        <div class="niche-feature">
+          <div class="niche-feature-icon">⚡</div>
+          <div class="niche-feature-text">Уникальные сценарии под любой бизнес</div>
+        </div>
+        <div class="niche-feature">
+          <div class="niche-feature-icon">🔄</div>
+          <div class="niche-feature-text">Интеграция с вашими сервисами</div>
+        </div>
+      </div>
+      <button class="btn btn-accent" id="contactScrollBtn">💬 Обсудить своего ассистента →</button>
+    </div>
+
+  </main>
+
+  <footer id="contact">
+    <div style="max-width: 550px; margin: 0 auto;">
+      <h3 style="font-size: 1.4rem;">📱 Решаем проблемы — быстро</h3>
+      <p style="margin-top: 10px;">Напишите нам. Расскажите, что болит в бизнесе.</p>
+      <div class="contact-row">
+        <a href="tel:+79506122307" class="contact-link">📞 +7 (950) 612-23-07</a>
+        <div class="contact-link" id="whatsappBtn">💬 WhatsApp</div>
+        <div class="contact-link" id="telegramBtn">✈️ Telegram</div>
+      </div>
+      <div class="copy-hint">👇 Нажмите на WhatsApp или Telegram, чтобы скопировать контакт</div>
+      <p style="font-size: 0.7rem; margin-top: 28px; opacity: 0.5;">WOLTRON SOLUTIONS — автоматизация бизнеса и разработка сайтов</p>
+    </div>
+  </footer>
+</div>
+
+<div class="floating-theme" id="floatingThemeToggle">🌓 Светлая тема</div>
+
+<script>
+  (function() {
+    // ========== ТЕМА ==========
+    const themeToggle = document.getElementById('floatingThemeToggle');
+    const body = document.body;
+    function setTheme(theme) {
+      body.classList.remove('dark', 'light');
+      body.classList.add(theme);
+      localStorage.setItem('theme', theme);
+      themeToggle.textContent = theme === 'light' ? '🌙 Тёмная тема' : '🌓 Светлая тема';
+    }
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    themeToggle.addEventListener('click', () => {
+      const current = body.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // ========== ВИДЕО ==========
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '00:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    function setupVideo(videoId, playBtnId, timeId) {
+      const video = document.getElementById(videoId);
+      const playBtn = document.getElementById(playBtnId);
+      const timeSpan = document.getElementById(timeId);
+      if (!video || !playBtn) return;
+      playBtn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          playBtn.innerHTML = '⏸️ Пауза';
+        } else {
+          video.pause();
+          playBtn.innerHTML = '▶️ Посмотреть работу';
+        }
+      });
+      video.addEventListener('play', () => playBtn.innerHTML = '⏸️ Пауза');
+      video.addEventListener('pause', () => playBtn.innerHTML = '▶️ Посмотреть работу');
+      video.addEventListener('loadedmetadata', () => {
+        if (timeSpan) timeSpan.textContent = `${formatTime(0)} / ${formatTime(video.duration)}`;
+      });
+      video.addEventListener('timeupdate', () => {
+        if (timeSpan) timeSpan.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+      });
+      video.addEventListener('ended', () => playBtn.innerHTML = '▶️ Посмотреть работу');
+    }
+    setupVideo('antonVideo', 'antonPlayBtn', 'antonTime');
+    setupVideo('elenaVideo', 'elenaPlayBtn', 'elenaTime');
+
+    // ========== КОПИРОВАНИЕ КОНТАКТОВ ==========
+    function setupCopyButton(btnId, text) {
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
+      let active = false;
+      btn.addEventListener('click', function(e) {
+        if (!active) {
+          btn.innerHTML = btnId === 'whatsappBtn' ? '📋 +7 (950) 612-23-07' : '📋 @VoLTRoN_megaboy';
+          active = true;
+        } else {
+          navigator.clipboard.writeText(text);
+          btn.innerHTML = '✅ Скопировано!';
+          setTimeout(() => {
+            btn.innerHTML = btnId === 'whatsappBtn' ? '💬 WhatsApp' : '✈️ Telegram';
+            active = false;
+          }, 1500);
+        }
+      });
+    }
+    setupCopyButton('whatsappBtn', '+79506122307');
+    setupCopyButton('telegramBtn', '@VoLTRoN_megaboy');
+
+    // ========== ПРОКРУТКА К КОНТАКТАМ ==========
+    function scrollToContacts() {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    const contactBtn = document.getElementById('contactScrollBtn');
+    if (contactBtn) contactBtn.addEventListener('click', scrollToContacts);
+  })();
+</script>
+</body>
+</html>
